@@ -1,0 +1,183 @@
+/* src/components/layout/Sidebar.module.css */
+.sidebar {
+  width: var(--sidebar-width);
+  height: 100%;
+  background: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-right: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  overflow: hidden;
+  transition: width var(--duration-slow) var(--ease),
+              opacity var(--duration-base) var(--ease);
+  position: relative;
+  z-index: 10;
+}
+
+.sidebar.collapsed {
+  width: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.header {
+  padding: var(--space-4) var(--space-3) var(--space-3);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.newBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: linear-gradient(135deg, rgba(138,118,255,0.12), rgba(0,229,184,0.06));
+  border: 1px solid rgba(138, 118, 255, 0.25);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease);
+  letter-spacing: 0.02em;
+}
+
+.newBtn:hover {
+  background: linear-gradient(135deg, rgba(138,118,255,0.22), rgba(0,229,184,0.1));
+  border-color: rgba(138, 118, 255, 0.5);
+  box-shadow: var(--glow-primary);
+  transform: translateY(-1px);
+}
+
+.newBtn .icon { font-size: 13px; color: var(--accent-primary); }
+
+.list {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-2);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sectionLabel {
+  padding: var(--space-2) var(--space-3) var(--space-1);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all var(--duration-fast) var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+
+.item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--accent-primary);
+  border-radius: 0 2px 2px 0;
+  transform: scaleY(0);
+  transition: transform var(--duration-fast) var(--ease);
+}
+
+.item:hover { background: var(--bg-hover); }
+.item.active {
+  background: var(--bg-active);
+  border-color: rgba(138, 118, 255, 0.2);
+}
+.item.active::before { transform: scaleY(1); }
+
+.itemIcon {
+  font-size: 11px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+.item.active .itemIcon { color: var(--accent-primary); opacity: 1; }
+
+.itemText {
+  flex: 1;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+.item.active .itemText { color: var(--text-primary); }
+
+.itemDelete {
+  opacity: 0;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 3px;
+  border-radius: var(--radius-xs);
+  font-size: 9px;
+  transition: all var(--duration-fast) var(--ease);
+  flex-shrink: 0;
+  line-height: 1;
+}
+.item:hover .itemDelete { opacity: 1; }
+.itemDelete:hover { color: var(--accent-danger); background: rgba(255,77,109,0.12); }
+
+.empty {
+  padding: var(--space-8) var(--space-4);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+}
+
+.footer {
+  padding: var(--space-3);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.modelBadge {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--bg-elevated);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+.modelDot {
+  width: 5px;
+  height: 5px;
+  border-radius: var(--radius-full);
+  background: var(--accent-secondary);
+  flex-shrink: 0;
+  box-shadow: 0 0 5px var(--accent-secondary);
+}
+
+.modelText {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+}

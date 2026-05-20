@@ -1,0 +1,137 @@
+/* src/components/chat/InputBar.module.css */
+.container {
+  padding: var(--space-3) var(--space-6) var(--space-4);
+  background: rgba(10, 10, 15, 0.7);
+  border-top: 1px solid var(--border-subtle);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  flex-shrink: 0;
+}
+
+.container.disabled { opacity: 0.45; pointer-events: none; }
+
+.inner {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-2);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  padding: var(--space-3) var(--space-3) var(--space-3) var(--space-4);
+  transition: border-color var(--duration-fast) var(--ease),
+              box-shadow var(--duration-fast) var(--ease);
+  position: relative;
+}
+
+.inner::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  opacity: 0;
+  transition: opacity var(--duration-fast) var(--ease);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.inner:focus-within {
+  border-color: rgba(138, 118, 255, 0.45);
+  box-shadow: var(--glow-primary);
+}
+
+.textarea {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  resize: none;
+  overflow: hidden;
+  min-height: 24px;
+  padding: var(--space-1) 0;
+}
+
+.textarea::placeholder { color: var(--text-muted); font-size: var(--text-sm); }
+.textarea:disabled { cursor: not-allowed; }
+
+.actions {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 1px;
+  flex-shrink: 0;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────────────── */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  border: none;
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-bounce);
+}
+
+.send {
+  width: 34px;
+  height: 34px;
+  background: linear-gradient(135deg, var(--accent-primary), #a68af0);
+  color: white;
+  box-shadow: 0 2px 8px rgba(138, 118, 255, 0.4);
+  font-size: 13px;
+}
+
+.send:hover:not(:disabled) {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 16px rgba(138, 118, 255, 0.6);
+}
+
+.send:active:not(:disabled) {
+  transform: translateY(0) scale(0.97);
+}
+
+.send:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.stop {
+  width: 34px;
+  height: 34px;
+  background: rgba(255, 77, 109, 0.12);
+  border: 1px solid rgba(255, 77, 109, 0.3);
+  color: var(--accent-danger);
+  font-size: 10px;
+}
+
+.stop:hover {
+  background: rgba(255, 77, 109, 0.2);
+  box-shadow: var(--glow-danger);
+  transform: scale(1.05);
+}
+
+/* ── Hint bar ─────────────────────────────────────────────────────────────── */
+.hint {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: var(--space-2);
+  font-family: var(--font-mono);
+  letter-spacing: 0.03em;
+}
+
+.runningHint {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  color: var(--accent-secondary);
+}

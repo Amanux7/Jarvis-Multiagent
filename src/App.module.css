@@ -1,0 +1,57 @@
+/* src/App.module.css */
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg-base);
+  /* Cinema grid overlay */
+  background-image:
+    linear-gradient(rgba(138, 118, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(138, 118, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.body {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  min-height: 0;
+  position: relative;
+}
+
+/* Ambient glow blob — bottom-left */
+.body::before {
+  content: '';
+  position: absolute;
+  bottom: -120px;
+  left: -80px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(138, 118, 255, 0.07) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ambient glow blob — top-right */
+.body::after {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -60px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(0, 229, 184, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+}
