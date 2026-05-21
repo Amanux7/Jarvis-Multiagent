@@ -1,0 +1,12 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "main-capability",
+  "description": "JARvis main window capability — grants core IPC and event access only. Filesystem access is handled natively in Rust commands, not exposed via plugin.",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "core:event:default",
+    "core:window:default",
+    "opener:default"
+  ]
+}

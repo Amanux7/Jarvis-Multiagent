@@ -1,0 +1,36 @@
+[package]
+name = "jarvis"
+version = "0.1.0"
+description = "JARvis — Native Desktop AI Agent"
+authors = ["JARvis"]
+edition = "2021"
+
+[lib]
+name = "jarvis_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri              = { version = "2", features = ["unstable"] }
+tauri-plugin-opener = "2"
+serde              = { version = "1", features = ["derive"] }
+serde_json         = "1"
+tokio              = { version = "1", features = ["full"] }
+rusqlite           = { version = "0.31", features = ["bundled"] }
+reqwest            = { version = "0.12", features = ["json", "stream"] }
+async-trait        = "0.1"
+thiserror          = "1"
+anyhow             = "1"
+uuid               = { version = "1", features = ["v4"] }
+chrono             = { version = "0.4", features = ["serde"] }
+futures-util       = "0.3"
+bytes              = "1"
+
+[profile.release]
+opt-level     = "z"
+lto           = true
+codegen-units = 1
+panic         = "abort"
+strip         = true
